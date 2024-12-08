@@ -37,6 +37,8 @@ function createSquare(rowIndex, colIndex) {
     const square = document.createElement('div');
     square.className = 'square';
     square.textContent = `${rowIndex * colIndex}`;
+    square.addEventListener('mouseover', () => highlightRowAndColumn(rowIndex, colIndex));
+    square.addEventListener('mouseout', () => removeHighlight());
     return square;
 }
 
@@ -45,4 +47,33 @@ function createHeaderSquare(content) {
     square.className = 'square header';
     square.textContent = content;
     return square;
+}
+
+function highlightRowAndColumn(rowIndex, colIndex) {
+    const gridContainer = document.getElementById('grid-container');
+    const rows = gridContainer.getElementsByClassName('row');
+    const hoverInfo = document.getElementById('hover-info');
+    hoverInfo.textContent = ` ${rowIndex} X ${colIndex} = ${rowIndex * colIndex}`;
+
+    for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const squares = row.getElementsByClassName('square');
+        if (i === rowIndex) {
+            for (let j = 1; j <= colIndex; j++) {
+                squares[j].classList.add('highlight');
+            }
+        } else if (i <= rowIndex) {
+            squares[colIndex].classList.add('highlight');
+        }
+    }
+}
+
+function removeHighlight() {
+    const gridContainer = document.getElementById('grid-container');
+    const highlightedSquares = gridContainer.getElementsByClassName('highlight');
+    while (highlightedSquares.length > 0) {
+        highlightedSquares[0].classList.remove('highlight');
+    }
+    const hoverInfo = document.getElementById('hover-info');
+    hoverInfo.textContent = '';
 }

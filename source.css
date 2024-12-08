@@ -13,7 +13,11 @@ form {
 .grid {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    overflow: auto;
+    max-width: 100%;
+    max-height: 80vh;
+    border: 1px solid #ccc;
 }
 
 .row {
@@ -33,4 +37,8 @@ form {
 .header {
     font-weight: bold;
     text-decoration: underline;
+}
+
+.highlight {
+    background-color: #e0e0ff;
 }
