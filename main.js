@@ -3,7 +3,7 @@ document.getElementById('grid-form').addEventListener('submit', handleFormSubmit
 document.querySelectorAll('input[type="number"]').forEach(adjustInputWidth);
 
 function adjustInputWidth(input) {
-    input.style.width = `${Math.max(2, input.value.length)}ch`;
+    input.style.width = `${Math.max(5+input.value.length, input.value.length)}ch`;
 }
 
 function handleFormSubmit(event) {
